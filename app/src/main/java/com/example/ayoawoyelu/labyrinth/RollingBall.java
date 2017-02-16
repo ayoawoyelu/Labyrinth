@@ -25,15 +25,23 @@ public class RollingBall implements BallObject {
 
     }
 
+    public void update(Point point, Canvas canvas){
+        canvas = new Canvas();
+        Paint paint = new Paint();
+        paint.setColor(color);
+        canvas.drawCircle(point.x,point.y,25f,paint);
+        //ball.set((point.x - ball.width()/5), (point.y - ball.height()/5), (point.x + ball.width()/5), (point.y + ball.height()/5));
+    }
     public void update(Point point){
-        ball.set(point.x - ball.width()/5, point.y - ball.height()/5, point.x + ball.width()/5, point.y + ball.height()/5);
+        ball.set((point.x - ball.width()/5), (point.y - ball.height()/5), (point.x + ball.width()/5), (point.y + ball.height()/5));
     }
 
     @Override
-    public void draw(Canvas canvas, Paint paint) {
-        paint = new Paint();
+    public void draw(Canvas canvas) {
+        Paint paint = new Paint();
         paint.setColor(color);
-        canvas.drawCircle(1.1f,1.1f,4.0f,paint);
+        canvas.drawCircle((float)Constants.SCREEN_WIDTH/2,(float)Constants.SCREEN_HEIGHT/2,25f,paint);
+
     }
 
 
