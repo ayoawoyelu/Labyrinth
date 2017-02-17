@@ -21,7 +21,7 @@ public class GamePlayScene implements Scene {
 
     public GamePlayScene(){
         rollingBall = new RollingBall( new Rect(100,100,100,100), Color.BLACK);
-        BallPoint = new Point(Constants.SCREEN_HEIGHT/2, Constants.SCREEN_WIDTH/2);
+        BallPoint = new Point(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2);
         rollingBall.update(BallPoint);
 
         Orientation = new HardwareOrientation();
@@ -32,6 +32,7 @@ public class GamePlayScene implements Scene {
     public void StarOver(){
     }
     public void update(){
+
         int timeElapsed = (int)(System.currentTimeMillis() - startTime);
             if(Orientation.getOrientation() != null && Orientation.getStartOrientation() != null){
                 float pitch = Orientation.getOrientation()[1] - Orientation.getStartOrientation()[1];
@@ -39,23 +40,30 @@ public class GamePlayScene implements Scene {
                 float xVelocity = 2*roll* Constants.SCREEN_WIDTH/10f;
                 float yVelocity = pitch*Constants.SCREEN_HEIGHT/10f;
 
-                BallPoint.x += Math.abs(xVelocity*timeElapsed)>5 ? xVelocity*timeElapsed: 0 ;
-                BallPoint.y -= Math.abs(yVelocity*timeElapsed)>5 ? yVelocity*timeElapsed: 0 ;
+                BallPoint.x += Math.abs(xVelocity) > 0 ? xVelocity: 0 ;
+                BallPoint.y -= Math.abs(yVelocity)>0 ? yVelocity:0  ;
             }
 
-        if (BallPoint.x >Constants.SCREEN_WIDTH){
-            BallPoint.x  = Constants.SCREEN_WIDTH;
+        if (BallPoint.x > Constants.SCREEN_WIDTH){
+            BallPoint.x = Constants.SCREEN_WIDTH - 25;
         }
-        if(BallPoint.y >Constants.SCREEN_HEIGHT){
-            BallPoint.y = Constants.SCREEN_HEIGHT;
+        else if (BallPoint.x < 0){
+            BallPoint.x = 25;
+        }
+        if(BallPoint.y > Constants.SCREEN_HEIGHT){
+            BallPoint.y = Constants.SCREEN_HEIGHT- 25;
+        }
+        else if (BallPoint.y < 0){
+            BallPoint.y = 25;
         }
         rollingBall.update(BallPoint);
+
     }
     @Override
     public void draw(Canvas canvas){
         canvas.drawColor(Color.WHITE);
-        rollingBall.update(BallPoint, canvas);
-        rollingBall.draw(canvas);
+        rollingBall.draw(canvas, BallPoint);
+
 
     }
     @Override
@@ -63,6 +71,23 @@ public class GamePlayScene implements Scene {
 
     }
     public void receiveTouch(MotionEvent event){
+      /*  switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                if (rollingBall.getBall().contains((int)event.getX(), (int)event.getY())){
+                    movingBall = true;
+                }
+                break;
+            case MotionEvent.ACTION_MOVE:
+                if(movingBall) {
+                    BallPoint.set((int) event.getX(), (int) event.getY());
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                movingBall = false;
+                break;
+
+
+        }*/
 
     }
 }
