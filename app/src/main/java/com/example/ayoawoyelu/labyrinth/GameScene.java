@@ -57,6 +57,7 @@ public class GameScene extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update() {
        // gamePlayScene.update();
+
     }
 
     @Override

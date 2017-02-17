@@ -40,6 +40,7 @@ public class GamePlayScene implements Scene {
                 float xVelocity = 2*roll* Constants.SCREEN_WIDTH/10f;
                 float yVelocity = pitch*Constants.SCREEN_HEIGHT/10f;
 
+
                 BallPoint.x += Math.abs(xVelocity) > 0 ? xVelocity: 0 ;
                 BallPoint.y -= Math.abs(yVelocity)>0 ? yVelocity:0  ;
             }
@@ -63,31 +64,13 @@ public class GamePlayScene implements Scene {
     public void draw(Canvas canvas){
         canvas.drawColor(Color.WHITE);
         rollingBall.draw(canvas, BallPoint);
-
-
     }
     @Override
     public void terminate(){
 
     }
     public void receiveTouch(MotionEvent event){
-      /*  switch (event.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                if (rollingBall.getBall().contains((int)event.getX(), (int)event.getY())){
-                    movingBall = true;
-                }
-                break;
-            case MotionEvent.ACTION_MOVE:
-                if(movingBall) {
-                    BallPoint.set((int) event.getX(), (int) event.getY());
-                }
-                break;
-            case MotionEvent.ACTION_UP:
-                movingBall = false;
-                break;
 
-
-        }*/
 
     }
 }
