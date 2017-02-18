@@ -18,6 +18,7 @@ public class GamePlayScene implements Scene {
     private long gameTime;
     private HardwareOrientation Orientation;
     int startTime;
+    Grid grid;
 
     public GamePlayScene(){
         rollingBall = new RollingBall( new Rect(100,100,100,100), Color.BLACK);
@@ -27,6 +28,7 @@ public class GamePlayScene implements Scene {
         Orientation = new HardwareOrientation();
         Orientation.register();
         startTime = (int)System.currentTimeMillis();
+       grid = new Grid(Color.BLUE);
 
     }
     public void StarOver(){
@@ -40,30 +42,31 @@ public class GamePlayScene implements Scene {
                 float xVelocity = 2*roll* Constants.SCREEN_WIDTH/10f;
                 float yVelocity = pitch*Constants.SCREEN_HEIGHT/10f;
 
-
-                BallPoint.x += Math.abs(xVelocity) > 0 ? xVelocity: 0 ;
-                BallPoint.y -= Math.abs(yVelocity)>0 ? yVelocity:0  ;
+                BallPoint.x += Math.abs(xVelocity) > 0 ? xVelocity: 0;
+                BallPoint.y -= Math.abs(yVelocity)>0 ? yVelocity:0;
             }
 
-        if (BallPoint.x > Constants.SCREEN_WIDTH){
+        if (BallPoint.x >= Constants.SCREEN_WIDTH){
             BallPoint.x = Constants.SCREEN_WIDTH - 25;
         }
-        else if (BallPoint.x < 0){
+        else if (BallPoint.x <= 0){
             BallPoint.x = 25;
         }
-        if(BallPoint.y > Constants.SCREEN_HEIGHT){
+        if(BallPoint.y >= Constants.SCREEN_HEIGHT){
             BallPoint.y = Constants.SCREEN_HEIGHT- 25;
         }
-        else if (BallPoint.y < 0){
+        else if (BallPoint.y <= 0){
             BallPoint.y = 25;
         }
-        rollingBall.update(BallPoint);
 
+        rollingBall.update(BallPoint);
     }
     @Override
     public void draw(Canvas canvas){
         canvas.drawColor(Color.WHITE);
         rollingBall.draw(canvas, BallPoint);
+        grid.draw(canvas);
+
     }
     @Override
     public void terminate(){
