@@ -45,7 +45,7 @@ public class RollingBall implements BallObject {
     public void draw(Canvas canvas, Point point) {
         Paint paint = new Paint();
         paint.setColor(color);
-        canvas.drawCircle((float)point.x,(float)point.y,25f,paint);
+        canvas.drawCircle((float)point.x,(float)point.y,15f,paint);
     }
 
 

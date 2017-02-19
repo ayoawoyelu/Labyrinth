@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * Created by Ayoawoyelu on 2017-02-17.
  */
 
+/*-------------_Grid to help with Maze matrix*/
 public class Grid implements BallObject {
 
 

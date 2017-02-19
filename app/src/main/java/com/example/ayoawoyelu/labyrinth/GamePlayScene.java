@@ -19,6 +19,7 @@ public class GamePlayScene implements Scene {
     private HardwareOrientation Orientation;
     int startTime;
     Grid grid;
+    FirstMaze mazeOne;
 
     public GamePlayScene(){
         rollingBall = new RollingBall( new Rect(100,100,100,100), Color.BLACK);
@@ -29,6 +30,7 @@ public class GamePlayScene implements Scene {
         Orientation.register();
         startTime = (int)System.currentTimeMillis();
        grid = new Grid(Color.BLUE);
+        mazeOne = new FirstMaze(Color.RED);
 
     }
     public void StarOver(){
@@ -40,12 +42,24 @@ public class GamePlayScene implements Scene {
                 float pitch = Orientation.getOrientation()[1] - Orientation.getStartOrientation()[1];
                 float roll = Orientation.getOrientation()[2] - Orientation.getStartOrientation()[2];
                 float xVelocity = 2*roll* Constants.SCREEN_WIDTH/10f;
-                float yVelocity = pitch*Constants.SCREEN_HEIGHT/10f;
+                float yVelocity = 2*pitch*Constants.SCREEN_HEIGHT/10f;
 
-                BallPoint.x += Math.abs(xVelocity) > 0 ? xVelocity: 0;
-                BallPoint.y -= Math.abs(yVelocity)>0 ? yVelocity:0;
+                if(movingBall = true) {
+                    BallPoint.x += Math.abs(xVelocity) > 0 ? xVelocity : 0;
+                    BallPoint.y -= Math.abs(yVelocity) > 0 ? yVelocity : 0;
+                }
+            }
+        for (int i = 0; i<mazeOne.Lines.size(); i++) {
+            if (rollingBall.getBall().intersect(mazeOne.Lines.get(i))){
+                BallPoint.x = mazeOne.Lines.get(i).left;
+                BallPoint.y = mazeOne.Lines.get(i).bottom;
+            }
+            else {
+                movingBall = true;
             }
 
+        }
+/*
         if (BallPoint.x >= Constants.SCREEN_WIDTH){
             BallPoint.x = Constants.SCREEN_WIDTH - 25;
         }
@@ -57,7 +71,7 @@ public class GamePlayScene implements Scene {
         }
         else if (BallPoint.y <= 0){
             BallPoint.y = 25;
-        }
+        }*/
 
         rollingBall.update(BallPoint);
     }
@@ -65,7 +79,8 @@ public class GamePlayScene implements Scene {
     public void draw(Canvas canvas){
         canvas.drawColor(Color.WHITE);
         rollingBall.draw(canvas, BallPoint);
-        grid.draw(canvas);
+        //grid.draw(canvas);
+        mazeOne.draw(canvas);
 
     }
     @Override
