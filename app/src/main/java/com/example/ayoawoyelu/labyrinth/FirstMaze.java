@@ -13,6 +13,10 @@ import java.util.ArrayList;
 public class FirstMaze implements MazeObject {
     public ArrayList<Rect> Lines;
     public int color;
+    Rect topBorder = new Rect(40,40,Constants.SCREEN_WIDTH-40, 60);
+    Rect bottomBorder = new Rect(40,Constants.SCREEN_HEIGHT- 60,Constants.SCREEN_WIDTH-40,Constants.SCREEN_HEIGHT-40);
+    Rect leftBorder = new Rect(40,40,60,Constants.SCREEN_HEIGHT-100);
+    Rect rightBorder = new Rect(Constants.SCREEN_WIDTH-60, 100,Constants.SCREEN_WIDTH-40,Constants.SCREEN_HEIGHT-40);
 
     public FirstMaze(int color){
         this.color = color;
@@ -22,11 +26,13 @@ public class FirstMaze implements MazeObject {
 
     public void printMaze(){
         // Rect(int left, int top, int right, int bottom)
-        Lines.add(new Rect(40,40,Constants.SCREEN_WIDTH-40, 60)); //Top-Border
-        Lines.add(new Rect(40,Constants.SCREEN_HEIGHT- 60,Constants.SCREEN_WIDTH-40,Constants.SCREEN_HEIGHT-40)); //Bottom-Border
-        Lines.add(new Rect(40,40,60,Constants.SCREEN_HEIGHT-100)); //Left
-        Lines.add(new Rect(Constants.SCREEN_WIDTH-60, 100,Constants.SCREEN_WIDTH-40,Constants.SCREEN_HEIGHT-40)); //Right
-        Lines.add(new Rect(Constants.SCREEN_WIDTH- 150, 40, Constants.SCREEN_WIDTH-130, 200));
+
+
+        Lines.add(topBorder); //Top-Border
+        Lines.add(bottomBorder); //Bottom-Border
+        Lines.add(leftBorder); //Left
+        Lines.add(rightBorder); //Right
+       // Lines.add(new Rect(Constants.SCREEN_WIDTH- 150, 40, Constants.SCREEN_WIDTH-130, 200));
 
     }
     @Override
