@@ -34,7 +34,7 @@ public class GamePlayScene implements Scene {
         Orientation.register();
         startTime = (int)System.currentTimeMillis();
         grid = new Grid(Color.BLUE);
-        mazeOne = new FirstMaze(Color.RED);
+        mazeOne = new FirstMaze(Color.DKGRAY);
 
     }
     public void StarOver(){
@@ -49,8 +49,9 @@ public class GamePlayScene implements Scene {
                  xVelocity = roll* Constants.SCREEN_WIDTH/10f;
                  yVelocity = pitch*Constants.SCREEN_HEIGHT/10f;
                     BallPoint.x += Math.abs(xVelocity) > 0 ? xVelocity : 0;
-                    rollingBall.currFrame = ++rollingBall.currFrame%36;
-                    BallPoint.y -= Math.abs(yVelocity) > 0 ? yVelocity : 0;
+                    //rollingBall.currFrame = --rollingBall.currFrame%36;
+                rollingBall.currFrame = ++rollingBall.currFrame%36;
+                BallPoint.y -= Math.abs(yVelocity) > 0 ? yVelocity : 0;
             }
 
 
@@ -77,7 +78,7 @@ public class GamePlayScene implements Scene {
         //rollingBall.draw(canvas);
         rollingBall.draw(canvas, BallPoint);
         //grid.draw(canvas);
-       // mazeOne.draw(canvas);
+        mazeOne.draw(canvas);
 
     }
     @Override
@@ -88,4 +89,5 @@ public class GamePlayScene implements Scene {
 
 
     }
+
 }
