@@ -25,7 +25,9 @@ public class GamePlayScene implements Scene {
     BitmapFactory bf = new BitmapFactory();
     Bitmap bitmap = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.right);
 
+
     public GamePlayScene(){
+
         rollingBall = new RollingBall( new Rect(100,100,100,100), Color.BLACK, bitmap);
         BallPoint = new Point(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2);
         rollingBall.update(BallPoint);
@@ -47,10 +49,10 @@ public class GamePlayScene implements Scene {
                 float pitch = Orientation.getOrientation()[1] - Orientation.getStartOrientation()[1];
                 float roll = Orientation.getOrientation()[2] - Orientation.getStartOrientation()[2];
                  xVelocity = roll* Constants.SCREEN_WIDTH/10f;
-                 yVelocity = pitch*Constants.SCREEN_HEIGHT/10f;
+                 yVelocity = 2*pitch*Constants.SCREEN_HEIGHT/10f;
                     BallPoint.x += Math.abs(xVelocity) > 0 ? xVelocity : 0;
                     //rollingBall.currFrame = --rollingBall.currFrame%36;
-                rollingBall.currFrame = ++rollingBall.currFrame%36;
+                //rollingBall.currFrame = 35 + --rollingBall.currFrame%36;
                 BallPoint.y -= Math.abs(yVelocity) > 0 ? yVelocity : 0;
             }
 

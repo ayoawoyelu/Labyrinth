@@ -28,7 +28,7 @@ public class RollingBall implements BallObject {
 
         height = bitmap.getHeight();
         width = bitmap.getWidth()/36+1;
-        currFrame = bitmap.getWidth();
+        currFrame = 0;
     }
     public Rect getBall(){
         return ball;
@@ -50,10 +50,26 @@ public class RollingBall implements BallObject {
     public void draw(Canvas canvas, Point point) {
         Paint paint = new Paint();
         paint.setColor(color);
-        int srcX = currFrame * width;
-        Rect src = new Rect(srcX,0,srcX+width, height);
+        //Left
+        int srcX = 0;
+
+        //Right
+        //currFrame = ++currFrame%36;
+        // int srcX = currFrame*width;
+
         Rect dst = new Rect(new Rect(Constants.SCREEN_WIDTH/2 -50, Constants.SCREEN_HEIGHT/2-50, Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2));
+        int oldpos = dst.left;
         dst.set((point.x - dst.width()/2), (point.y - dst.height()/2), (point.x + dst.width()/2), (point.y + dst.height()/2));
+
+        if (oldpos- dst.left > 3){
+            currFrame = (--currFrame%36);
+            srcX= (currFrame+35) * width;
+        }
+        else if (oldpos- dst.left < -3){
+            currFrame = ++currFrame%36;
+            srcX = currFrame*width;
+        }
+        Rect src = new Rect(srcX,0,srcX+width, height);
         canvas.drawBitmap(rollRight, src, dst, paint );
         //left, top right bottom
         //canvas.drawRect(new Rect(Constants.SCREEN_WIDTH/2 -50, Constants.SCREEN_HEIGHT/2-50, Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2), paint);
