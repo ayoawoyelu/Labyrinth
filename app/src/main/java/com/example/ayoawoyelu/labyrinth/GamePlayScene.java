@@ -55,24 +55,19 @@ public class GamePlayScene implements Scene {
                 //rollingBall.currFrame = 35 + --rollingBall.currFrame%36;
                 BallPoint.y -= Math.abs(yVelocity) > 0 ? yVelocity : 0;
             }
-
-
-        if (BallPoint.x>Constants.SCREEN_WIDTH -20){
-           // xVelocity = 0.0f;
-            BallPoint.x =  Constants.SCREEN_WIDTH-20;
+        if (BallPoint.x> mazeOne.rightBorder.left -20){
+            BallPoint.x =  mazeOne.rightBorder.left -20;
         }
-        else if (BallPoint.x < 20){
-            //xVelocity = 0.0f;
-            BallPoint.x = 20;
+        else if (BallPoint.x < mazeOne.leftBorder.right+20){
+            BallPoint.x = mazeOne.leftBorder.right+20;
         }
-        if(BallPoint.y >= Constants.SCREEN_HEIGHT -20){
-            BallPoint.y = Constants.SCREEN_HEIGHT- 20;
+        if (BallPoint.y<mazeOne.topBorder.bottom+20){
+            BallPoint.y=mazeOne.topBorder.bottom+20;
         }
-        else if (BallPoint.y <= 20){
-            BallPoint.y = 20;
+        else if(BallPoint.y>mazeOne.bottomBorder.top-20){
+            BallPoint.y=mazeOne.bottomBorder.top-20;
         }
 
-        //rollingBall.update(BallPoint);
     }
     @Override
     public void draw(Canvas canvas){

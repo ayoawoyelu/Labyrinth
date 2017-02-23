@@ -1,3 +1,4 @@
+
 package com.example.ayoawoyelu.labyrinth;
 
 import android.app.Activity;
@@ -21,8 +22,6 @@ public class MainActivity extends Activity {
         Constants.SCREEN_WIDTH = displayMetrics.widthPixels;
         Constants.SCREEN_HEIGHT = displayMetrics.heightPixels;
         setContentView(new GameScene(this));
-
     }
-
-
 }
+
