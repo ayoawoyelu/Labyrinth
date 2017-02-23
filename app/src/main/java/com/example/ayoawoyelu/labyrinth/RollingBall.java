@@ -44,7 +44,8 @@ public class RollingBall implements BallObject {
         canvas.drawCircle((float)Constants.SCREEN_WIDTH/2,(float)Constants.SCREEN_HEIGHT/2,25f,paint);
     }
     public void update(Point point){
-       // ball.set((point.x - ball.width()/5), (point.y - ball.height()/5), (point.x + ball.width()/5), (point.y + ball.height()/5));
+        ball.set((point.x - ball.width()/2), (point.y - ball.height()/2), (point.x + ball.width()/2), (point.y + ball.height()/2));
+        // ball.set((point.x - ball.width()/5), (point.y - ball.height()/5), (point.x + ball.width()/5), (point.y + ball.height()/5));
     }
 
     public void draw(Canvas canvas, Point point) {
@@ -59,14 +60,13 @@ public class RollingBall implements BallObject {
         //currFrame = ++currFrame%36;
         // int srcX = currFrame*width;
         Rect src = new Rect(srcX,0,srcX+width, height);
-        Rect dst = new Rect(new Rect(Constants.SCREEN_WIDTH/2 -50, Constants.SCREEN_HEIGHT/2-50, Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2));
-        int oldpos = dst.left;
-        dst.set((point.x - dst.width()/2), (point.y - dst.height()/2), (point.x + dst.width()/2), (point.y + dst.height()/2));
-
-        canvas.drawBitmap(rollRight, src, dst, paint );
+       // Rect dst = new Rect(new Rect(Constants.SCREEN_WIDTH/2 -50, Constants.SCREEN_HEIGHT/2-50, Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2));
+        //dst.set((point.x - dst.width()/2), (point.y - dst.height()/2), (point.x + dst.width()/2), (point.y + dst.height()/2));
+        update(point);
+//------------For image
+        //canvas.drawBitmap(rollRight, src, ball, paint );
         //left, top right bottom
-        //canvas.drawRect(new Rect(Constants.SCREEN_WIDTH/2 -50, Constants.SCREEN_HEIGHT/2-50, Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2), paint);
-        //canvas.drawCircle((float)point.x,(float)point.y,15f,paint);
+        canvas.drawCircle((float)point.x,(float)point.y,15f,paint);
     }
 
 

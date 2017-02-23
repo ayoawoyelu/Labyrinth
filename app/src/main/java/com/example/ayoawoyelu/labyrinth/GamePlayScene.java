@@ -28,16 +28,13 @@ public class GamePlayScene implements Scene {
 
     public GamePlayScene(){
 
-        rollingBall = new RollingBall( new Rect(100,100,100,100), Color.BLACK, bitmap);
+        rollingBall = new RollingBall( new Rect(Constants.SCREEN_WIDTH/2 -50, Constants.SCREEN_HEIGHT/2-50, Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2), Color.BLACK, bitmap);
         BallPoint = new Point(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2);
-        rollingBall.update(BallPoint);
-
         Orientation = new HardwareOrientation();
         Orientation.register();
         startTime = (int)System.currentTimeMillis();
         grid = new Grid(Color.BLUE);
         mazeOne = new FirstMaze(Color.DKGRAY);
-
     }
     public void StarOver(){
     }
@@ -50,12 +47,28 @@ public class GamePlayScene implements Scene {
                 float roll = Orientation.getOrientation()[2] - Orientation.getStartOrientation()[2];
                  xVelocity = roll* Constants.SCREEN_WIDTH/10f;
                  yVelocity = 2*pitch*Constants.SCREEN_HEIGHT/10f;
-                    BallPoint.x += Math.abs(xVelocity) > 0 ? xVelocity : 0;
-                    //rollingBall.currFrame = --rollingBall.currFrame%36;
-                //rollingBall.currFrame = 35 + --rollingBall.currFrame%36;
-                BallPoint.y -= Math.abs(yVelocity) > 0 ? yVelocity : 0;
+                boolean moveX = true;
+                Boolean moveY = true;
+                for (Rect obastacles:
+                     mazeOne.Lines) {
+                    if(rollingBall.getBall().intersect(obastacles) && yVelocity>0){
+                        //xVelocity = 0;
+                        moveX = false;
+                    }
+
+                    if (rollingBall.getBall().intersect(obastacles) && xVelocity>0){
+                        moveY = false;
+                    }
+                }
+
+                BallPoint.x += Math.abs(xVelocity) > 0 && moveX? xVelocity : 0;
+                BallPoint.y -= Math.abs(yVelocity) > 0 && moveY? yVelocity : 0;
+
+                //BallPoint.x += Math.abs(xVelocity) > 0 ? xVelocity : 0;
+                //BallPoint.y -= Math.abs(yVelocity) > 0 ? yVelocity : 0;
             }
-        if (BallPoint.x> mazeOne.rightBorder.left -20){
+
+     /*   if (BallPoint.x> mazeOne.rightBorder.left -20){
             BallPoint.x =  mazeOne.rightBorder.left -20;
         }
         else if (BallPoint.x < mazeOne.leftBorder.right+20){
@@ -66,8 +79,25 @@ public class GamePlayScene implements Scene {
         }
         else if(BallPoint.y>mazeOne.bottomBorder.top-20){
             BallPoint.y=mazeOne.bottomBorder.top-20;
-        }
+        }*/
 
+
+//        if (BallPoint.x>Constants.SCREEN_WIDTH -20){
+//
+//            BallPoint.x =  Constants.SCREEN_WIDTH-20;
+//        }
+//        else if (BallPoint.x < 20){
+//
+//            BallPoint.x = 20;
+//        }
+//        if(BallPoint.y >= Constants.SCREEN_HEIGHT -20){
+//            BallPoint.y = Constants.SCREEN_HEIGHT- 20;
+//        }
+//        else if (BallPoint.y <= 20){
+//            BallPoint.y = 20;
+//        }
+
+        rollingBall.update(BallPoint);
     }
     @Override
     public void draw(Canvas canvas){
