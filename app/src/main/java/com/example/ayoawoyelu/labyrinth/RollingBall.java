@@ -64,9 +64,9 @@ public class RollingBall implements BallObject {
         //dst.set((point.x - dst.width()/2), (point.y - dst.height()/2), (point.x + dst.width()/2), (point.y + dst.height()/2));
         update(point);
 //------------For image
-        canvas.drawBitmap(rollRight, src, ball, paint );
+        //canvas.drawBitmap(rollRight, src, ball, paint );
         //left, top right bottom
-        //canvas.drawCircle((float)point.x,(float)point.y,15f,paint);
+        canvas.drawCircle((float)point.x,(float)point.y,15f,paint);
     }
 
 

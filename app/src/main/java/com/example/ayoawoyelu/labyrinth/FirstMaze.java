@@ -17,6 +17,7 @@ public class FirstMaze implements MazeObject {
     Rect bottomBorder = new Rect(40,Constants.SCREEN_HEIGHT- 60,Constants.SCREEN_WIDTH-40,Constants.SCREEN_HEIGHT-40);
     Rect leftBorder = new Rect(40,40,60,Constants.SCREEN_HEIGHT-100);
     Rect rightBorder = new Rect(Constants.SCREEN_WIDTH-60, 100,Constants.SCREEN_WIDTH-40,Constants.SCREEN_HEIGHT-40);
+    Rect TestBlock = new Rect(200, 200, Constants.SCREEN_WIDTH-200, Constants.SCREEN_HEIGHT-200);
 
     public FirstMaze(int color){
         this.color = color;
@@ -32,6 +33,7 @@ public class FirstMaze implements MazeObject {
         Lines.add(bottomBorder); //Bottom-Border
         Lines.add(leftBorder); //Left
         Lines.add(rightBorder); //Right
+        Lines.add(TestBlock);
         Lines.add(new Rect(Constants.SCREEN_WIDTH- 150, 40, Constants.SCREEN_WIDTH-130, 200));
 
     }
