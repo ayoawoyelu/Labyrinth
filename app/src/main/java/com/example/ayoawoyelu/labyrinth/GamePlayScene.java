@@ -47,62 +47,30 @@ public class GamePlayScene implements Scene {
             if(Orientation.getOrientation() != null && Orientation.getStartOrientation() != null){
                 float pitch = Orientation.getOrientation()[1] - Orientation.getStartOrientation()[1];
                 float roll = Orientation.getOrientation()[2] - Orientation.getStartOrientation()[2];
-                 xVelocity = roll* Constants.SCREEN_WIDTH/75f;
-                 yVelocity = 2*pitch*Constants.SCREEN_HEIGHT/75f;
-//                for (int i = 0; i<mazeOne.Lines.size(); i++){
-//                    if (rollingBall.getBall().intersect(mazeOne.Lines.get(i))){
-//                        if (BallPoint.x < mazeOne.Lines.get(i).right +20 && BallPoint.y < mazeOne.Lines.get(i).bottom +20){
-//                            xVelocity = 0;
-//                            BallPoint.x = mazeOne.Lines.get(i).right +20;
-//                            moveX = false;
-//                        }
-//                    if (BallPoint.x<mazeOne.Lines.get(i).right+20 || BallPoint.x>mazeOne.Lines.get(i).left-20){
-//                        moveX = false;
-//                        xVelocity = 0;
-//                    }
-//                    }
-//                }
-                //Collision Handling
-                for (int i = 0; i<mazeOne.Lines.size(); i++){
-                    if (rollingBall.getBall().intersect(mazeOne.Lines.get(i))){
-                        if(rollingBall.getBall().left<mazeOne.Lines.get(i).right+20){
-                           /* if (rollingBall.getBall().right>mazeOne.Lines.get(i).left-20 ){
-                                BallPoint.x = mazeOne.Lines.get(i).left -20;
-                                break;
-                            }*/
-                            /*if (rollingBall.getBall().bottom>mazeOne.Lines.get(i).top-20){
-                                BallPoint.y = mazeOne.Lines.get(i).top-20;
-                                break;
-                            }*/
-                            /*if(rollingBall.getBall().top<mazeOne.Lines.get(i).bottom+20){
-                                BallPoint.y = mazeOne.Lines.get(i).bottom+20;
-                            }*/
-                            /*if (rollingBall.getBall().left<mazeOne.Lines.get(i).right+20){
-                                BallPoint.x = mazeOne.Lines.get(i).right+20;
-                            }*/
-                        }
-
-                    }
-                }
-
-
+                 xVelocity = roll* Constants.SCREEN_WIDTH/50f;
+                 yVelocity = 2*pitch*Constants.SCREEN_HEIGHT/50f;
                 BallPoint.x += Math.abs(xVelocity) > 0 && moveX? xVelocity : 0;
                 BallPoint.y -= Math.abs(yVelocity) > 0 && moveY? yVelocity : 0;
 
             }
+        //Collision Handling
+        for (Rect obstacle:
+             mazeOne.Lines) {
+            if (BallPoint.x> obstacle.left-15 && BallPoint.y >obstacle.top && BallPoint.y<obstacle.bottom && BallPoint.x<obstacle.right){
+                BallPoint.x= obstacle.left-15;
+            }
+           else if (BallPoint.x<obstacle.right+15 && BallPoint.y>obstacle.top && BallPoint.y<obstacle.bottom && BallPoint.x >obstacle.left){
+                BallPoint.x=obstacle.right+15;
+            }
 
-     /*   if (BallPoint.x> mazeOne.rightBorder.left -20){
-            BallPoint.x =  mazeOne.rightBorder.left -20;
+            if (BallPoint.y>obstacle.top-15 && BallPoint.x>obstacle.left && BallPoint.x<obstacle.right && BallPoint.y<obstacle.bottom){
+                BallPoint.y = obstacle.top-15;
+            }
+
+           else if (BallPoint.y<obstacle.bottom +15 && BallPoint.x>obstacle.left && BallPoint.x<obstacle.right && BallPoint.y>obstacle.top){
+                BallPoint.y = obstacle.bottom+15;
+            }
         }
-        else if (BallPoint.x < mazeOne.leftBorder.right+20){
-            BallPoint.x = mazeOne.leftBorder.right+20;
-        }
-        if (BallPoint.y<mazeOne.topBorder.bottom+20){
-            BallPoint.y=mazeOne.topBorder.bottom+20;
-        }
-        else if(BallPoint.y>mazeOne.bottomBorder.top-20){
-            BallPoint.y=mazeOne.bottomBorder.top-20;
-        }*/
 
 
         if (BallPoint.x>Constants.SCREEN_WIDTH -20){
@@ -119,7 +87,6 @@ public class GamePlayScene implements Scene {
         else if (BallPoint.y <= 20){
             BallPoint.y = 20;
         }
-
         rollingBall.update(BallPoint);
     }
     @Override

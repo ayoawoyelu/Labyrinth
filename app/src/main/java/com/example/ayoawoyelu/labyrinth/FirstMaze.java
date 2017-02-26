@@ -33,7 +33,7 @@ public class FirstMaze implements MazeObject {
         Lines.add(bottomBorder); //Bottom-Border
         Lines.add(leftBorder); //Left
         Lines.add(rightBorder); //Right
-        Lines.add(TestBlock);
+      //  Lines.add(TestBlock);
         Lines.add(new Rect(Constants.SCREEN_WIDTH- 150, 40, Constants.SCREEN_WIDTH-130, 200));
 
     }
