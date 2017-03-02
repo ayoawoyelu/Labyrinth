@@ -29,11 +29,11 @@ public class FirstMaze implements MazeObject {
         // Rect(int left, int top, int right, int bottom)
 
 
-//        Lines.add(topBorder); //Top-Border
-//        Lines.add(bottomBorder); //Bottom-Border
-//        Lines.add(leftBorder); //Left
-//        Lines.add(rightBorder); //Right
-//        Lines.add(new Rect(Constants.SCREEN_WIDTH- 150, 40, Constants.SCREEN_WIDTH-130, 200));
+        Lines.add(topBorder); //Top-Border
+        Lines.add(bottomBorder); //Bottom-Border
+        Lines.add(leftBorder); //Left
+        Lines.add(rightBorder); //Right
+        Lines.add(new Rect(Constants.SCREEN_WIDTH- 150, 40, Constants.SCREEN_WIDTH-130, 200));
         Lines.add(TestBlock);
 
 

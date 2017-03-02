@@ -53,40 +53,22 @@ public class GamePlayScene implements Scene {
                 BallPoint.y -= Math.abs(yVelocity) > 0 && moveY? yVelocity : 0;
 
             }
-//        if (BallPoint.x> mazeOne.TestBlock.left-15 &&  BallPoint.x<Math.abs(mazeOne.TestBlock.right)/2 && BallPoint.y >mazeOne.TestBlock.top && BallPoint.y<mazeOne.TestBlock.bottom ){
-//                    BallPoint.x = mazeOne.TestBlock.left - 15;
-//            }
-//        else if (BallPoint.x<mazeOne.TestBlock.right+15 && BallPoint.x >Math.abs(mazeOne.TestBlock.left) && BallPoint.y>mazeOne.TestBlock.top && BallPoint.y<mazeOne.TestBlock.bottom   ){
-//                BallPoint.x = mazeOne.TestBlock.right+15;
-//            }
         //Collision Handling
         for (Rect obstacle:
              mazeOne.Lines) {
-            if (BallPoint.x>obstacle.left-15 &&  BallPoint.x<Math.abs(obstacle.right)/2 && BallPoint.y >obstacle.top && BallPoint.y<obstacle.bottom ){
-                BallPoint.x = obstacle.left - 15;
+            if (BallPoint.x>obstacle.left-16 &&  BallPoint.x<(obstacle.right+2*obstacle.left)/3 && BallPoint.y >obstacle.top && BallPoint.y<obstacle.bottom ){
+                BallPoint.x = obstacle.left - 16;
             }
-            else if (BallPoint.x<obstacle.right+15 && BallPoint.x >Math.abs(obstacle.left) && BallPoint.y>obstacle.top && BallPoint.y<obstacle.bottom   ){
-                BallPoint.x = obstacle.right+15;
+             else if (BallPoint.x<obstacle.right+16 && BallPoint.x >Math.abs(obstacle.left+2*obstacle.right)/3 && BallPoint.y>obstacle.top && BallPoint.y<obstacle.bottom   ){
+                BallPoint.x = obstacle.right+16;
+
             }
-            if (BallPoint.y>obstacle.top-15 && BallPoint.x>obstacle.left && BallPoint.x<obstacle.right && BallPoint.y<Math.abs(obstacle.bottom)/2){
-                BallPoint.y = obstacle.top-15;
+            if (BallPoint.y>obstacle.top-15 && BallPoint.y<(obstacle.bottom+2*obstacle.top)/3 && BallPoint.x>obstacle.left && BallPoint.x<obstacle.right ){
+                BallPoint.y = obstacle.top-16;
             }
-           else if (BallPoint.y<obstacle.bottom +15 && BallPoint.x>obstacle.left && BallPoint.x<obstacle.right && BallPoint.y>obstacle.top){
-                BallPoint.y = obstacle.bottom+15;
+           else if (BallPoint.y<obstacle.bottom +16 && BallPoint.x>obstacle.left+15 && BallPoint.x<obstacle.right-15 && BallPoint.y>(obstacle.top+2*obstacle.bottom)/3){
+                BallPoint.y = obstacle.bottom+16;
             }
-//            if (BallPoint.x> obstacle.left-15 &&  BallPoint.x<obstacle.right && BallPoint.y >obstacle.top && BallPoint.y<obstacle.bottom ){
-//                    BallPoint.x = obstacle.left - 15;
-//            }
-//
-//           else if (BallPoint.x<Math.abs(obstacle.right+15) && BallPoint.y>obstacle.top && BallPoint.y<obstacle.bottom && BallPoint.x >Math.abs(obstacle.left ) ){
-//                BallPoint.x += obstacle.right+15;
-//            }
-            /*if (BallPoint.y>obstacle.top-15 && BallPoint.x>obstacle.left && BallPoint.x<obstacle.right && BallPoint.y<obstacle.bottom){
-                BallPoint.y = obstacle.top-15;
-            }
-           else if (BallPoint.y<obstacle.bottom +15 && BallPoint.x>obstacle.left && BallPoint.x<obstacle.right && BallPoint.y>obstacle.top){
-                BallPoint.y = obstacle.bottom+15;
-            }*/
         }
 
         if (BallPoint.x>Constants.SCREEN_WIDTH -20){
