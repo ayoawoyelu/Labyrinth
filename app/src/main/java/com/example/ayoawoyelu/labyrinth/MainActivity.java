@@ -9,6 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 public Button StartGame;
+    public Button Instruction;
 public void init(){
     StartGame = (Button)findViewById(R.id.Start);
     StartGame.setOnClickListener(new View.OnClickListener(){
@@ -18,7 +19,14 @@ public void init(){
             startActivity(intent);
         }
     });
-
+    Instruction = (Button)findViewById(R.id.Instruction);
+    Instruction.setOnClickListener(new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            Intent intent = new Intent(MainActivity.this, InstructionActivity.class);
+            startActivity(intent);
+        }
+    });
 }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

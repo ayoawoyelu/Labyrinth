@@ -49,27 +49,28 @@ public class GamePlayScene implements Scene {
                 float roll = Orientation.getOrientation()[2] - Orientation.getStartOrientation()[2];
                  xVelocity = roll* Constants.SCREEN_WIDTH/50f;
                  yVelocity = 2*pitch*Constants.SCREEN_HEIGHT/50f;
+                //Collision Handling
+                for (Rect obstacle:
+                        mazeOne.Lines) {
+                    if (BallPoint.x>obstacle.left-16 &&  BallPoint.x<(obstacle.right+2*obstacle.left)/3 && BallPoint.y >obstacle.top && BallPoint.y<obstacle.bottom ){
+                        BallPoint.x = obstacle.left - 16;
+                    }
+                    else if (BallPoint.x<obstacle.right+16 && BallPoint.x >Math.abs(obstacle.left+2*obstacle.right)/3 && BallPoint.y>obstacle.top && BallPoint.y<obstacle.bottom   ){
+                        BallPoint.x = obstacle.right+16;
+
+                    }
+                    if (BallPoint.y>obstacle.top-15 && BallPoint.y<(obstacle.bottom+2*obstacle.top)/3 && BallPoint.x>obstacle.left && BallPoint.x<obstacle.right ){
+                        BallPoint.y = obstacle.top-16;
+                    }
+                    else if (BallPoint.y<obstacle.bottom +16 && BallPoint.x>obstacle.left+15 && BallPoint.x<obstacle.right-15 && BallPoint.y>(obstacle.top+2*obstacle.bottom)/3){
+                        BallPoint.y = obstacle.bottom+16;
+                    }
+                }
                 BallPoint.x += Math.abs(xVelocity) > 0 && moveX? xVelocity : 0;
                 BallPoint.y -= Math.abs(yVelocity) > 0 && moveY? yVelocity : 0;
 
             }
-        //Collision Handling
-        for (Rect obstacle:
-             mazeOne.Lines) {
-            if (BallPoint.x>obstacle.left-16 &&  BallPoint.x<(obstacle.right+2*obstacle.left)/3 && BallPoint.y >obstacle.top && BallPoint.y<obstacle.bottom ){
-                BallPoint.x = obstacle.left - 16;
-            }
-             else if (BallPoint.x<obstacle.right+16 && BallPoint.x >Math.abs(obstacle.left+2*obstacle.right)/3 && BallPoint.y>obstacle.top && BallPoint.y<obstacle.bottom   ){
-                BallPoint.x = obstacle.right+16;
 
-            }
-            if (BallPoint.y>obstacle.top-15 && BallPoint.y<(obstacle.bottom+2*obstacle.top)/3 && BallPoint.x>obstacle.left && BallPoint.x<obstacle.right ){
-                BallPoint.y = obstacle.top-16;
-            }
-           else if (BallPoint.y<obstacle.bottom +16 && BallPoint.x>obstacle.left+15 && BallPoint.x<obstacle.right-15 && BallPoint.y>(obstacle.top+2*obstacle.bottom)/3){
-                BallPoint.y = obstacle.bottom+16;
-            }
-        }
 
         if (BallPoint.x>Constants.SCREEN_WIDTH -20){
 
@@ -92,7 +93,7 @@ public class GamePlayScene implements Scene {
         canvas.drawColor(Color.WHITE);
         //rollingBall.draw(canvas);
         rollingBall.draw(canvas, BallPoint);
-       // grid.draw(canvas);
+       //grid.draw(canvas);
         mazeOne.draw(canvas);
 
     }
