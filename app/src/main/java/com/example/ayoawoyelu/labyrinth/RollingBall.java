@@ -66,7 +66,7 @@ public class RollingBall implements BallObject {
 //------------For image
         canvas.drawBitmap(rollRight, src, ball, paint );
         //left, top right bottom
-       // canvas.drawCircle((float)point.x,(float)point.y,15f,paint);
+        //canvas.drawCircle((float)point.x,(float)point.y,15f,paint);
     }
 
 
