@@ -26,19 +26,19 @@ public class FirstMaze implements MazeObject {
 
     public void initializeObstacles(){
         // Obstacle Coordinates
-//        Lines.add(topBorder); //Top-Border
-//        Lines.add(bottomBorder); //Bottom-Border
-//        Lines.add(leftBorder); //Left
-//        Lines.add(rightBorder); //Right
-//        Lines.add(new Rect(Constants.SCREEN_WIDTH- 150, 40, Constants.SCREEN_WIDTH-130, 200));
-//        Lines.add(new Rect(150,700,170,900));
-//        Lines.add(new Rect(170,700,250,720));
-//        Lines.add(new Rect(230, 720, 250,900));
-//        Lines.add(new Rect(250,880,450,900));
-//        Lines.add(new Rect(450, 700, 470,1020));
-//        Lines.add(new Rect(470,1000,570,1020));
-//        Lines.add(new Rect(150,1000,380,1020));
-//        Lines.add(new Rect(520,1020,540,Constants.SCREEN_HEIGHT- 60));
+        Lines.add(topBorder); //Top-Border
+        Lines.add(bottomBorder); //Bottom-Border
+        Lines.add(leftBorder); //Left
+        Lines.add(rightBorder); //Right
+        Lines.add(new Rect(Constants.SCREEN_WIDTH- 150, 40, Constants.SCREEN_WIDTH-130, 200));
+        Lines.add(new Rect(150,700,170,900));
+        Lines.add(new Rect(170,700,250,720));
+        Lines.add(new Rect(230, 720, 250,900));
+        Lines.add(new Rect(250,880,450,900));
+        Lines.add(new Rect(450, 700, 470,1020));
+        Lines.add(new Rect(470,1000,570,1020));
+        Lines.add(new Rect(150,1000,380,1020));
+        Lines.add(new Rect(520,1020,540,Constants.SCREEN_HEIGHT- 60));
         Lines.add(new Rect(190, 200, 210,500));
         Lines.add(new Rect(300, 400, 500,420));
     }
