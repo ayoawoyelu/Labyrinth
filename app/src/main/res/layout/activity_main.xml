@@ -17,21 +17,34 @@
         android:id="@+id/textView" />
 
     <Button
-        android:text="Instructions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Start"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
-        android:id="@+id/Instruction" />
-
-    <Button
         android:text="Start Game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Start"
+        android:layout_marginTop="73dp"
+        android:elevation="9dp"
+        android:width="225dp"
         android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/Instruction"
+        android:layout_alignStart="@+id/Instruction" />
+
+    <Button
+        android:text="Instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Instruction"
+        android:width="225dp"
+        android:layout_below="@+id/selectLevel"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="165dp"
-        android:elevation="9dp" />
+        android:layout_marginTop="19dp" />
+
+    <Button
+        android:text="SELECT LEVEL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/selectLevel"
+        android:layout_below="@+id/Start"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:width="225dp" />
 </RelativeLayout>
