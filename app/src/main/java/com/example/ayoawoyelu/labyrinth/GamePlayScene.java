@@ -56,19 +56,25 @@ public class GamePlayScene implements Scene {
        // Collision Handling
         for (Rect obstacle:
                 mazeOne.Lines) {
-            if (BallPoint.x > obstacle.left - 15 && BallPoint.x < obstacle.right  && BallPoint.y > obstacle.top && BallPoint.y < obstacle.bottom) {
-                BallPoint.x = obstacle.left - 15;
-            }
-//            else if (BallPoint.x<obstacle.right+15 && BallPoint.x >obstacle.right && BallPoint.y>obstacle.top && BallPoint.y<obstacle.bottom   ){
+//            if (BallPoint.x > obstacle.left - 15 && BallPoint.x < obstacle.right  && BallPoint.y > obstacle.top && BallPoint.y < obstacle.bottom) {
+//                BallPoint.x = obstacle.left - 15;
+//            }
+//             if (BallPoint.x<obstacle.right+15
+//                     && BallPoint.x >obstacle.left
+//                     && BallPoint.y>obstacle.top+5
+//                     && BallPoint.y<obstacle.bottom-5){
 //                BallPoint.x = obstacle.right+15;
 //            }
-            if (BallPoint.y>obstacle.top-15 && BallPoint.y<obstacle.bottom && BallPoint.x>obstacle.left && BallPoint.x<obstacle.right ){
-                        BallPoint.y = obstacle.top-15;
-            }
-//            else if (BallPoint.y<obstacle.bottom +15 && BallPoint.x>obstacle.left+15 && BallPoint.x<obstacle.right-15 && BallPoint.y>(obstacle.top+2*obstacle.bottom)/3){
+//            if (BallPoint.y>obstacle.top-15 && BallPoint.y<obstacle.bottom && BallPoint.x>obstacle.left && BallPoint.x<obstacle.right ){
+//                        BallPoint.y = obstacle.top-15;
+////            }
+//             if (BallPoint.y<obstacle.bottom +15
+//                     && BallPoint.x>obstacle.left+15
+//                     && BallPoint.x<obstacle.right-15
+//                     && BallPoint.y>(obstacle.top+2*obstacle.bottom)/3){
 //                        BallPoint.y = obstacle.bottom+15;
 //            }
-
+            collisionRestriction();
         }
 
         if (BallPoint.x>Constants.SCREEN_WIDTH -20){
@@ -87,6 +93,38 @@ public class GamePlayScene implements Scene {
         }
         //rollingBall.update(BallPoint);
     }
+    public void collisionRestriction(){
+        // Collision Handling
+        for (Rect obstacle:
+                mazeOne.Lines) {
+            if (BallPoint.x > obstacle.left - 15
+                    && BallPoint.x < obstacle.right-20
+                    && BallPoint.y > obstacle.top+5
+                    && BallPoint.y < obstacle.bottom-5) {
+                BallPoint.x = obstacle.left - 15;
+            }
+            if (BallPoint.x < obstacle.right+15
+                    && BallPoint.x >obstacle.left+10
+                    && BallPoint.y>obstacle.top+5
+                    && BallPoint.y<obstacle.bottom-5){
+                BallPoint.x = obstacle.right+15;
+            }
+            if (BallPoint.y>obstacle.top-15
+                    && BallPoint.y<obstacle.bottom-10
+                    && BallPoint.x>obstacle.left
+                    && BallPoint.x<obstacle.right){
+                BallPoint.y = obstacle.top-15;
+            }
+            else if (BallPoint.y<obstacle.bottom +15
+                    && BallPoint.x>obstacle.left
+                    && BallPoint.x<obstacle.right
+                    && BallPoint.y>obstacle.top+5){
+                        BallPoint.y = obstacle.bottom+15;
+            }
+
+        }
+    }
+
     @Override
     public void draw(Canvas canvas){
         canvas.drawColor(Color.WHITE);
