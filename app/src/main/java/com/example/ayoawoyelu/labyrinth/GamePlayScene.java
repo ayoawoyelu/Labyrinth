@@ -47,8 +47,8 @@ public class GamePlayScene implements Scene {
             if(Orientation.getOrientation() != null && Orientation.getStartOrientation() != null){
                 float pitch = Orientation.getOrientation()[1] - Orientation.getStartOrientation()[1];
                 float roll = Orientation.getOrientation()[2] - Orientation.getStartOrientation()[2];
-                xVelocity = 2*roll* Constants.SCREEN_WIDTH/100f;
-                yVelocity = 2*pitch*Constants.SCREEN_HEIGHT/100f;
+                xVelocity = roll* Constants.SCREEN_WIDTH/100f;
+                yVelocity = pitch*Constants.SCREEN_HEIGHT/100f;
                 BallPoint.x += Math.abs(xVelocity) > 0 && moveX? xVelocity : 0;
                 BallPoint.y -= Math.abs(yVelocity) > 0 && moveY? yVelocity : 0;
             }
@@ -74,7 +74,9 @@ public class GamePlayScene implements Scene {
 //                     && BallPoint.y>(obstacle.top+2*obstacle.bottom)/3){
 //                        BallPoint.y = obstacle.bottom+15;
 //            }
-            collisionRestriction();
+                    collisionRestriction();
+
+
         }
 
         if (BallPoint.x>Constants.SCREEN_WIDTH -20){
