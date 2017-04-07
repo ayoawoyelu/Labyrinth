@@ -13,10 +13,11 @@ import java.util.ArrayList;
 public class FirstMaze implements MazeObject {
     public ArrayList<Rect> Lines;
     public int color;
-    Rect topBorder = new Rect(40,40,Constants.SCREEN_WIDTH-40, 60);
-    Rect bottomBorder = new Rect(40,Constants.SCREEN_HEIGHT- 60,Constants.SCREEN_WIDTH-40,Constants.SCREEN_HEIGHT-40);
-    Rect leftBorder = new Rect(40,40,60,Constants.SCREEN_HEIGHT-100);
-    Rect rightBorder = new Rect(Constants.SCREEN_WIDTH-60, 100,Constants.SCREEN_WIDTH-40,Constants.SCREEN_HEIGHT-40);
+    //left, top, right, bottom
+      Rect topBorder = new Rect(0,0,Constants.SCREEN_WIDTH, 20);
+      Rect bottomBorder = new Rect(0,Constants.SCREEN_HEIGHT- 20,Constants.SCREEN_WIDTH,Constants.SCREEN_HEIGHT);
+      Rect leftBorder = new Rect(0,0,20,Constants.SCREEN_HEIGHT);
+      Rect rightBorder = new Rect(Constants.SCREEN_WIDTH-20, 0,Constants.SCREEN_WIDTH,Constants.SCREEN_HEIGHT);
 
     public FirstMaze(int color){
         this.color = color;
@@ -26,6 +27,7 @@ public class FirstMaze implements MazeObject {
 
     public void initializeObstacles(){
         // Obstacle Coordinates
+        //left, top, right, bottom
         Lines.add(topBorder); //Top-Border
         Lines.add(bottomBorder); //Bottom-Border
         Lines.add(leftBorder); //Left
@@ -41,6 +43,8 @@ public class FirstMaze implements MazeObject {
         Lines.add(new Rect(520,1020,540,Constants.SCREEN_HEIGHT- 60));
         Lines.add(new Rect(190, 200, 210,500));
         Lines.add(new Rect(300, 400, 500,420));
+        Lines.add(new Rect(80,600,600,620));
+
     }
     @Override
     public void draw(Canvas canvas) {

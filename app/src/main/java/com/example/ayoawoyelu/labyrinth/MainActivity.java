@@ -21,6 +21,7 @@ public void init(){
             startActivity(intent);
         }
     });
+
     SelectLevel = (Button)findViewById(R.id.selectLevel);
     SelectLevel.setOnClickListener(new View.OnClickListener(){
         @Override
@@ -37,6 +38,7 @@ public void init(){
                 startActivity(intent);
             }
         });
+
 }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

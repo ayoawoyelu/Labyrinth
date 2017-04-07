@@ -27,7 +27,7 @@ public class GamePlayScene implements Scene {
 
 
     public GamePlayScene(){
-
+        Rect Start;
         rollingBall = new RollingBall( new Rect(Constants.SCREEN_WIDTH/2 -50, Constants.SCREEN_HEIGHT/2-50, Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2), Color.BLACK, bitmap);
         BallPoint = new Point(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2);
         Orientation = new HardwareOrientation();

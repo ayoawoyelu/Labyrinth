@@ -44,24 +44,46 @@ public class RollingBall implements BallObject {
         canvas.drawCircle((float)Constants.SCREEN_WIDTH/2,(float)Constants.SCREEN_HEIGHT/2,25f,paint);
     }
     public void update(Point point){
+
         ball.set((point.x - ball.width()/2), (point.y - ball.height()/2), (point.x + ball.width()/2), (point.y + ball.height()/2));
         // ball.set((point.x - ball.width()/5), (point.y - ball.height()/5), (point.x + ball.width()/5), (point.y + ball.height()/5));
     }
-
+    public int FramesMachine(Point BallPoint){
+        int state=0;
+        int srcX= 0;
+        int sHor = BallPoint.x;
+        int SVert = BallPoint.y;
+        if(BallPoint.x-sHor >1 && BallPoint.y-SVert<3){
+            //Right
+            currFrame = ++currFrame%36;
+            srcX = currFrame*width;
+        }
+        else if(BallPoint.x-sHor <1 && BallPoint.y-SVert<3){
+            currFrame = (--currFrame%36);
+            srcX = (currFrame+35) * width;
+        }
+        return  srcX;
+    }
     public void draw(Canvas canvas, Point point) {
         Paint paint = new Paint();
         paint.setColor(color);
         //Left
         int srcX = 0;
+        int oldLeft = point.x;
+
         //Left
-        currFrame = (--currFrame%36);
-        srcX= (currFrame+35) * width;
+        if(Constants.SCREEN_WIDTH/2-point.x <-1) {
+            currFrame = ++currFrame%36;
+            srcX = currFrame*width;
+        } else {
+            currFrame = (--currFrame % 36);
+            srcX = (currFrame + 35) * width;
+        }
+
         //Right
         //currFrame = ++currFrame%36;
         // int srcX = currFrame*width;
         Rect src = new Rect(srcX,0,srcX+width, height);
-       // Rect dst = new Rect(new Rect(Constants.SCREEN_WIDTH/2 -50, Constants.SCREEN_HEIGHT/2-50, Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2));
-        //dst.set((point.x - dst.width()/2), (point.y - dst.height()/2), (point.x + dst.width()/2), (point.y + dst.height()/2));
         update(point);
 //------------For image
         canvas.drawBitmap(rollRight, src, ball, paint );
