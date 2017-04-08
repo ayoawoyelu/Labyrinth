@@ -2,6 +2,7 @@
 package com.example.ayoawoyelu.labyrinth;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -38,6 +39,9 @@ public void init(){
                 startActivity(intent);
             }
         });
+    StartGame.setBackgroundColor(Color.parseColor("#7ec0ee"));
+    SelectLevel.setBackgroundColor(Color.parseColor("#7ec0ee"));
+    Instruction.setBackgroundColor(Color.parseColor("#7ec0ee"));
 
 }
     @Override

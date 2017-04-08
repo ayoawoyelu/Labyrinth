@@ -23,7 +23,6 @@
         android:id="@+id/Start"
         android:layout_marginTop="73dp"
         android:elevation="9dp"
-        android:color ="#1e3f9b"
         android:width="225dp"
         android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/Instruction"
