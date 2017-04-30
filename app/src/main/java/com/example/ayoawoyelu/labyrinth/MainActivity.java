@@ -39,9 +39,10 @@ public void init(){
                 startActivity(intent);
             }
         });
-    StartGame.setBackgroundColor(Color.parseColor("#7ec0ee"));
-    SelectLevel.setBackgroundColor(Color.parseColor("#7ec0ee"));
-    Instruction.setBackgroundColor(Color.parseColor("#7ec0ee"));
+    StartGame.setTextColor(Color.WHITE);
+    //#ADD8E6
+    SelectLevel.setTextColor(Color.WHITE);
+    Instruction.setTextColor(Color.WHITE);
 
 }
     @Override
@@ -49,6 +50,8 @@ public void init(){
         super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
         init();
+
     }
 }
+
 

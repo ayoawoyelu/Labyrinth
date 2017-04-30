@@ -13,38 +13,43 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to the Labyrinth Game!"
+        android:text="ESCAPE"
         android:id="@+id/textView" />
 
     <Button
-        android:text="Start Game"
+        android:text="Play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Start"
         android:layout_marginTop="73dp"
         android:elevation="9dp"
-        android:width="225dp"
+        android:width="300dp"
+        android:height="10dp"
         android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/Instruction"
-        android:layout_alignStart="@+id/Instruction" />
+        android:layout_alignStart="@+id/Instruction"
+        android:background="@drawable/button_rounded_corner"/>
 
     <Button
         android:text="Instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Instruction"
-        android:width="225dp"
+        android:width="300dp"
         android:layout_below="@+id/selectLevel"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp" />
+        android:layout_marginTop="19dp"
+        android:background="@drawable/button_rounded_corner"/>
 
     <Button
-        android:text="SELECT LEVEL"
+        android:background="@drawable/button_rounded_corner"
+        android:text="Select Level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/selectLevel"
         android:layout_below="@+id/Start"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
-        android:width="225dp" />
+        android:width="300dp"
+       />
 </RelativeLayout>

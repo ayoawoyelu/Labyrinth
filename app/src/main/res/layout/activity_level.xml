@@ -11,7 +11,7 @@
     tools:context="com.example.ayoawoyelu.labyrinth.LevelActivity">
 
     <Button
-        android:text="LEVEL 1"
+        android:text="Level 1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -21,15 +21,41 @@
         android:elevation="0dp"
         android:fontFamily="sans-serif-medium"
         android:textSize="14sp"
-        android:width="300dp" />
+        android:width="300dp"
+        android:background="@drawable/button_rounded_corner"/>
 
     <Button
-        android:text="LEVEL 2"
+        android:text="Level 2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:id="@+id/Level2"
         android:layout_below="@+id/Level1"
         android:layout_centerHorizontal="true"
-        android:width="300dp" />
+        android:width="300dp"
+        android:background="@drawable/button_rounded_corner"/>
+
+    <Button
+        android:text="Level 3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Level2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:id="@+id/Level3"
+        android:width="300dp"
+        android:background="@drawable/button_rounded_corner"/>
+
+    <Button
+        android:text="Level 4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Level3"
+        android:layout_alignLeft="@+id/Level3"
+        android:layout_alignStart="@+id/Level3"
+        android:layout_marginTop="20dp"
+        android:id="@+id/Level4"
+        android:width="300dp"
+        android:background="@drawable/button_rounded_corner"/>
+
 </RelativeLayout>

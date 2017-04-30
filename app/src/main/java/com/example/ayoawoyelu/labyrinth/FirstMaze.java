@@ -1,5 +1,7 @@
 package com.example.ayoawoyelu.labyrinth;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -13,6 +15,8 @@ import java.util.ArrayList;
 public class FirstMaze implements MazeObject {
     public ArrayList<Rect> Lines;
     public int color;
+    private BitmapFactory bf = new BitmapFactory();
+    private Bitmap wood =  bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.right);
     //left, top, right, bottom
       Rect topBorder = new Rect(0,0,Constants.SCREEN_WIDTH, 20);
       Rect bottomBorder = new Rect(0,Constants.SCREEN_HEIGHT- 20,Constants.SCREEN_WIDTH,Constants.SCREEN_HEIGHT);
@@ -44,7 +48,6 @@ public class FirstMaze implements MazeObject {
         Lines.add(new Rect(190, 200, 210,500));
         Lines.add(new Rect(300, 400, 500,420));
         Lines.add(new Rect(80,600,600,620));
-
     }
     @Override
     public void draw(Canvas canvas) {

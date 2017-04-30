@@ -54,7 +54,7 @@ public class GameScene extends SurfaceView implements SurfaceHolder.Callback {
     public boolean onTouchEvent(MotionEvent event) {
     gamePlayScene.receiveTouch(event);
         //return super.onTouchEvent(event);
-        return true;
+       return true;
     }
 
     public void update() {
@@ -65,8 +65,6 @@ public class GameScene extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         gamePlayScene.draw(canvas);
-       // gamePlayScene.update();
-
     }
 
 }

@@ -24,7 +24,7 @@ public class RollingBall implements BallObject {
         this.ball = ball;
         this.color = color;
         this.rollRight = bitmap;
-       // currFrame = 0;
+        // currFrame = 0;
 
         height = bitmap.getHeight();
         width = bitmap.getWidth()/36+1;
@@ -72,14 +72,15 @@ public class RollingBall implements BallObject {
         int oldLeft = point.x;
 
         //Left
-        if(Constants.SCREEN_WIDTH/2-point.x <-1) {
-            currFrame = ++currFrame%36;
-            srcX = currFrame*width;
-        } else {
-            currFrame = (--currFrame % 36);
-            srcX = (currFrame + 35) * width;
-        }
-
+//        if(Constants.SCREEN_WIDTH/2-point.x <-1) {
+//            currFrame = ++currFrame%36;
+//            srcX = currFrame*width;
+//        } else {
+//            currFrame = (--currFrame % 36);
+//            srcX = (currFrame + 35) * width;
+//        }
+        currFrame = ++currFrame%36;
+        srcX = currFrame*width;
         //Right
         //currFrame = ++currFrame%36;
         // int srcX = currFrame*width;
