@@ -1,4 +1,4 @@
-# Labyrinth ![alt text](https://github.com/ayoawoyelu/Labyrinth/blob/master/app/src/main/res/drawable/labyrinthlogo.png)
+# Labyrinth
 	This was created as a 2D android game based on a labyrinth. Currently in development. 
 ## Credits 
     1. Retro Chicken
