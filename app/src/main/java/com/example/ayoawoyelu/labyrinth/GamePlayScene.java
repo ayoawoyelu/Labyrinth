@@ -25,30 +25,31 @@ public class GamePlayScene implements Scene {
     public FirstMaze mazeOne;
     BitmapFactory bf = new BitmapFactory();
     Bitmap bitmap = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.right);
-
+    Bitmap firstmazepic = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.maze);
+    private float xVelocity = 0;
+    private float yVelocity = 0;
 
     public GamePlayScene(){
         Rect Start;
-        rollingBall = new RollingBall( new Rect(Constants.SCREEN_WIDTH/2 -50, Constants.SCREEN_HEIGHT/2-50, Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2), Color.BLACK, bitmap);
+        rollingBall = new RollingBall( new Rect(Constants.SCREEN_WIDTH/2 -30, Constants.SCREEN_HEIGHT/2-30, Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2), Color.BLACK, bitmap);
         BallPoint = new Point(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2);
         Orientation = new HardwareOrientation();
         Orientation.register();
         startTime = (int)System.currentTimeMillis();
         grid = new Grid(Color.BLUE);
-        mazeOne = new FirstMaze(Color.BLACK);
+        mazeOne = new FirstMaze(Color.GRAY);
     }
 
     public void update(){
-        float xVelocity;
-        float yVelocity;
+
         boolean moveX = true;
         boolean moveY = true;
         int timeElapsed = (int)(System.currentTimeMillis() - startTime);
             if(Orientation.getOrientation() != null && Orientation.getStartOrientation() != null){
                 float pitch = Orientation.getOrientation()[1] - Orientation.getStartOrientation()[1];
                 float roll = Orientation.getOrientation()[2] - Orientation.getStartOrientation()[2];
-                xVelocity = roll* Constants.SCREEN_WIDTH/100f;
-                yVelocity = pitch*Constants.SCREEN_HEIGHT/100f;
+                xVelocity = 2*roll* Constants.SCREEN_WIDTH/100f;
+                yVelocity = 2*pitch*Constants.SCREEN_HEIGHT/100f;
                 BallPoint.x += Math.abs(xVelocity) > 0 && movingBall? xVelocity : 0;
                 BallPoint.y -= Math.abs(yVelocity) > 0 && movingBall? yVelocity : 0;
             }
@@ -59,9 +60,9 @@ public class GamePlayScene implements Scene {
                     collisionRestriction();
         }
 
-        if (BallPoint.x>Constants.SCREEN_WIDTH -20){
+        if (BallPoint.x>Constants.SCREEN_WIDTH -15){
 
-            BallPoint.x =  Constants.SCREEN_WIDTH-20;
+            BallPoint.x =  Constants.SCREEN_WIDTH-15;
         }
         else if (BallPoint.x < 20){
 
@@ -76,33 +77,40 @@ public class GamePlayScene implements Scene {
     }
     public void collisionRestriction(){
         // Collision Handling
-        for (Rect obstacle:
-                mazeOne.Lines) {
-            if (BallPoint.x > obstacle.left - 15
-                    && BallPoint.x < obstacle.right-20
-                    && BallPoint.y > obstacle.top+5
-                    && BallPoint.y < obstacle.bottom-5) {
-                BallPoint.x = obstacle.left - 15;
+            for (Rect obstacle:
+                    mazeOne.Lines) {
+                if (BallPoint.x > obstacle.left - 15
+                        && BallPoint.x < obstacle.right-15
+                        && BallPoint.y > obstacle.top+5
+                        && BallPoint.y < obstacle.bottom-5) {
+                    BallPoint.x = obstacle.left - 15;
+                    System.out.println("HIT Left");
+                }
+                if (BallPoint.x < obstacle.right+15
+                        && BallPoint.x >obstacle.left+10
+                        && BallPoint.y>obstacle.top+5
+                        && BallPoint.y<obstacle.bottom-5){
+                    BallPoint.x = obstacle.right+15;
+                    System.out.println("HIT Right");
+
+                }
+                if (BallPoint.y>obstacle.top-15
+                        && BallPoint.y<obstacle.bottom-10
+                        && BallPoint.x>obstacle.left
+                        && BallPoint.x<obstacle.right){
+                    BallPoint.y = obstacle.top-15;
+                    System.out.println("Hit Top: "+BallPoint.y);
+
+                }
+                else if (BallPoint.y<obstacle.bottom + 15
+                        && BallPoint.x>obstacle.left
+                        && BallPoint.x<obstacle.right
+                        && BallPoint.y>obstacle.top+5){
+                    BallPoint.y = obstacle.bottom+15;
+                    System.out.println("HIT Bottom: "+ BallPoint.y);
+
+                }
             }
-            if (BallPoint.x < obstacle.right+15
-                    && BallPoint.x >obstacle.left+10
-                    && BallPoint.y>obstacle.top+5
-                    && BallPoint.y<obstacle.bottom-5){
-                BallPoint.x = obstacle.right+15;
-            }
-            if (BallPoint.y>obstacle.top-15
-                    && BallPoint.y<obstacle.bottom-10
-                    && BallPoint.x>obstacle.left
-                    && BallPoint.x<obstacle.right){
-                BallPoint.y = obstacle.top-15;
-            }
-            else if (BallPoint.y<obstacle.bottom +15
-                    && BallPoint.x>obstacle.left
-                    && BallPoint.x<obstacle.right
-                    && BallPoint.y>obstacle.top+5){
-                        BallPoint.y = obstacle.bottom+15;
-            }
-        }
     }
 
     @Override
@@ -110,8 +118,12 @@ public class GamePlayScene implements Scene {
         canvas.drawColor(Color.WHITE);
         Paint paint = new Paint();
         paint.setColor(Color.RED);
-        canvas.drawText("Test", 100,100, paint);
+        canvas.drawText(String.valueOf((int)(System.currentTimeMillis() - startTime)), 100,100, paint);
+        //Set Background Picture for MAze
+        Rect src = new Rect(0,0,firstmazepic.getWidth(), firstmazepic.getHeight());
+        //canvas.drawBitmap(firstmazepic,src,new Rect(0,0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT), paint);
         rollingBall.draw(canvas, BallPoint);
+        //grid.draw(canvas);
         mazeOne.draw(canvas);
     }
     @Override
@@ -124,6 +136,7 @@ public class GamePlayScene implements Scene {
             case MotionEvent.ACTION_DOWN:
                     movingBall = !movingBall;
                     System.out.println("ACTION_DOWN");
+                System.out.println("X: "+(int)event.getX() +"\n"+ "Y: "+ (int)event.getY());
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (movingBall){
