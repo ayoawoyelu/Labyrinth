@@ -88,6 +88,7 @@ public class GamePlayScene implements Scene {
                         && BallPoint.y < obstacle.bottom-5) {
                     BallPoint.x = obstacle.left - 15;
                     System.out.println("HIT Left");
+
                 }
                 if (BallPoint.x < obstacle.right+15
                         && BallPoint.x >obstacle.left+10
@@ -153,16 +154,16 @@ public class GamePlayScene implements Scene {
 
     }
 
-    Vector FindMTD(Vector PushVectors[], int iNumVectors) {
-        Vector MTD = PushVectors[0];
-//        float mind2 = PushVector[0] dot PushVector[0];
-//        for (int I = 1; I < iNumVectors; I++) {
-//            float d2 = PushVectors[I] * PushVectors[I];
-//            if (d2 < mind2) {
-//                mind2 = d2;
-//                MTD = PushVectors[I];
-//            }
-//        }
+    Vector FindMTD(Vector<Point>PushVectors[], int iNumVectors) {
+        Vector<Point> MTD = PushVectors[0];
+        float mind2 = (PushVectors[0].get(0).x * PushVectors[0].get(1).x) + (PushVectors[0].get(0).y * PushVectors[0].get(1).y);
+        for (int I = 1; I < iNumVectors; I++) {
+            float d2 = (PushVectors[I].get(0).x * PushVectors[I].get(1).x) + (PushVectors[I].get(0).y * PushVectors[I].get(1).y);
+            if (d2 < mind2) {
+                mind2 = d2;
+                MTD = PushVectors[I];
+            }
+        }
         return MTD;
     }
 
