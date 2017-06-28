@@ -9,6 +9,8 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 
+import java.util.Vector;
+
 /**
  * Created by Ayoawoyelu on 2017-02-14.
  */
@@ -28,6 +30,7 @@ public class GamePlayScene implements Scene {
     Bitmap firstmazepic = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.maze);
     private float xVelocity = 0;
     private float yVelocity = 0;
+
 
     public GamePlayScene(){
         Rect Start;
@@ -148,6 +151,19 @@ public class GamePlayScene implements Scene {
                 break;
         }
 
+    }
+
+    Vector FindMTD(Vector PushVectors[], int iNumVectors) {
+        Vector MTD = PushVectors[0];
+//        float mind2 = PushVector[0] dot PushVector[0];
+//        for (int I = 1; I < iNumVectors; I++) {
+//            float d2 = PushVectors[I] * PushVectors[I];
+//            if (d2 < mind2) {
+//                mind2 = d2;
+//                MTD = PushVectors[I];
+//            }
+//        }
+        return MTD;
     }
 
 }
